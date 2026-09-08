@@ -43,21 +43,21 @@ class _Plot:
     def _scale(self, seq_length):
         """scale the sequence (protein or DNA)"""
 
-    if self.scale is None or self.scale < seq_length:
-        self.normalize = seq_length
-    else:
-        self.normalize = self.scale
+        if self.scale is None or self.scale < seq_length:
+            self.normalize = seq_length
+        else:
+            self.normalize = self.scale
 
-    if not self.normalize:
-        # protein_length can be 0 for non-coding transcripts or fusions
-        # with no CDS downstream of the breakpoint; avoid ZeroDivisionError
-        # and just fall back to a minimal normalize so a (degenerate/empty)
-        # image still draws instead of crashing the whole batch
-        self.normalize = 1
+        if not self.normalize:
+            # protein_length can be 0 for non-coding transcripts or fusions
+            # with no CDS downstream of the breakpoint; avoid ZeroDivisionError
+            # and just fall back to a minimal normalize so a (degenerate/empty)
+            # image still draws instead of crashing the whole batch
+            self.normalize = 1
 
-    self.offset = 0.05 + (1.0 - float(seq_length) / self.normalize) * 0.45
+        self.offset = 0.05 + (1.0 - float(seq_length) / self.normalize) * 0.45
 
-    assert self.normalize >= seq_length, "length normalization should be >= protein length"
+        assert self.normalize >= seq_length, "length normalization should be >= protein length"
 
 class _PlotExons(_Plot):
     """Base class for plotting exon structure."""
