@@ -35,6 +35,6 @@ setup(
         "matplotlib>=1.6.0",
         "pandas>=0.18.1",
         "biopython>=1.67",
-        "pyensembl>=1.1.0",
+        "pyensembl>=2.10.4",
     ],
 )
