@@ -41,9 +41,7 @@ class _Plot:
         plt.clf()
 
     def _scale(self, seq_length):
-    """
-    scale the sequence (protein or DNA)
-    """
+        """scale the sequence (protein or DNA)"""
 
     if self.scale is None or self.scale < seq_length:
         self.normalize = seq_length
